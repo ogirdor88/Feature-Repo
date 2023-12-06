@@ -16,10 +16,12 @@ public class Movement : MonoBehaviour
     public GameObject indicatorPrefab;
     public GameObject player;
     private Camera mainCamera;
+    public bool hasDest;
 
     private void Awake()
     {
         mainCamera = Camera.main;
+        hasDest = false;
     }
 
     //get the location where the user clicked and store it
@@ -34,14 +36,17 @@ public class Movement : MonoBehaviour
             {
                 Indicator = Instantiate(indicatorPrefab);
                 Indicator.transform.position = hit.point;
+                hasDest = true;
             }
             //if there is already an indicator and the user clicks again
             //delete the previous indicatior and spawn a new one in the new location
             if (Indicator != null)
             {
                 Destroy(Indicator.gameObject);
+                hasDest = false;
                 Indicator = Instantiate(indicatorPrefab);
                 Indicator.transform.position = hit.point;
+                hasDest = true;
             }
         }
     }
