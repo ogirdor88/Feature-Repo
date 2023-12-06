@@ -7,25 +7,25 @@ public class FollowCam : MonoBehaviour
     static public FollowCam instance;
 
     public GameObject poi;
-    public float camZ;
-    public float easing = 0.05f;
+    public float camY;
+    public float easing = 5f;
 
     private void Awake()
     {
         instance = this;
-        camZ = this.transform.position.z;
+        camY = this.transform.position.y;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         poi = GameObject.FindWithTag("Player");
-        Vector3 destination  = poi.transform.position;
 
-        //interpolate beteween the cameras curent pos and the POI pos
+        Vector3 destination = new Vector3(poi.transform.position.x - 4, camY, poi.transform.position.z + 7);
+
         destination = Vector3.Lerp(transform.position, destination, easing);
 
-        //move the camera
         transform.position = destination;
+
     }
 }
