@@ -12,24 +12,14 @@ using UnityEngine.UIElements.Experimental;
 
 public class Movement : MonoBehaviour
 {
-    //Variabels 
-    //private bool isMoving = false;
     public GameObject Indicator;
     public GameObject indicatorPrefab;
     public GameObject player;
-    private Vector3 currPos;
-    private Vector3 clickPos;
     private Camera mainCamera;
-    private float easing = 0.05f;
 
     private void Awake()
     {
         mainCamera = Camera.main;
-    }
-
-    private void FixedUpdate()
-    {
-
     }
 
     //get the location where the user clicked and store it
@@ -44,7 +34,6 @@ public class Movement : MonoBehaviour
             {
                 Indicator = Instantiate(indicatorPrefab);
                 Indicator.transform.position = hit.point;
-                clickPos = hit.point;
             }
             //if there is already an indicator and the user clicks again
             //delete the previous indicatior and spawn a new one in the new location
@@ -53,7 +42,6 @@ public class Movement : MonoBehaviour
                 Destroy(Indicator.gameObject);
                 Indicator = Instantiate(indicatorPrefab);
                 Indicator.transform.position = hit.point;
-                clickPos = hit.point;
             }
         }
     }

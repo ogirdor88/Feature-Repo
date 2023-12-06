@@ -19,6 +19,7 @@ public class FollowCam : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        poi = GameObject.FindWithTag("Player");
         Vector3 destination  = poi.transform.position;
 
         //interpolate beteween the cameras curent pos and the POI pos
