@@ -32,11 +32,13 @@ public class PlayerMove : MonoBehaviour
         if (GameObject.FindWithTag("indicator"))
         {
             //look at the ground to see if there is a destination
+            //refrencing the hasdest from the movement script
             hasDest = GameObject.Find("Ground").GetComponent<Movement>().hasDest;
         }
     }
     private void FixedUpdate()
     {
+        //if the player has a destination run MovetoPoint
         if (hasDest)
         {
             StartCoroutine(MoveToPoint());
@@ -73,6 +75,12 @@ public class PlayerMove : MonoBehaviour
         yield return null;
     }
     */
+
+    /// <summary>
+    /// checks to see if it has a destination; if it does, set the destination to the location of the indicator
+    /// then move towards the destination
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator MoveToPoint()
     {
         //if hasDest is true move the player towards the destination
